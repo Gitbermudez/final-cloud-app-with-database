@@ -11,7 +11,6 @@ import logging
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
 # Create your views here.
-
 # <HINT> Create a submit view to create an exam submission record for a course enrollment,
 # you may implement it based on following logic:
          # Get user and course object, then get the associated enrollment object created when the user enrolled the course
@@ -51,7 +50,6 @@ def show_exam_result(request, course_id, submission_id):
     context['course'] = course
     context['grade'] = total_score
     context['choices'] = choices
-
     return render(request, 'onlinecourse/exam_result_bootstrap.html', context)
 
 def registration_request(request):
@@ -148,13 +146,10 @@ def extract_answers(request):
     submitted_anwsers = []
     for key in request.POST:
         if key.startswith('choice'):
+            #choice_id = request.POST[key]
             value = request.POST[key]
             choice_id = int(value)
             submitted_anwsers.append(choice_id)
+            #submitted_anwsers.append(Choice.objects.get(id=choice_id)
     return submitted_anwsers
-
-
-
-
-
 
